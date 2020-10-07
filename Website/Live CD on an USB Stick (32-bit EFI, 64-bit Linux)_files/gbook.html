@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>Guestbook</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link href="gbook_data/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="gbook_top_links">
+Comments: 28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=sign">Add comment</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <b>1</b>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=2">2</a>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=3">3</a>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=2">Next ›</a> <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=3">Last »</a></div>
+
+<!--NOTICE -->
+
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Yesterday my new Linux system was pretty 
+laggy. Someone on another forum advised removing 'nomodeset' as it 
+inhibited acceleration. This helped. What's left is probably just the 
+ancient cpu's, I have a pair of 5365's on the way.</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|27 11:35:36 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=0"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=0"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=0"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Change in behavior--now it boots by itself!<br>I
+ had booted per the above a couple of times to make sure I knew how to 
+do it, verified my changes had gotten into grub.cfg, it still required 
+the above procedure.<br>Just now I ran the updater, accepting a bunch of
+ changes including a new kernel. When I rebooted, the machine did it by 
+itself, no intervention required.<br>I infer from this that it repaired grub, or something.<br>Anyway, I'm happy.<br>Huge thanks to Stefan for providing the details here.</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|26 22:03:25 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=1"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=1"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=1"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Booting the Mac with the Option/Alt key 
+held down, I get two choices, "windows" and "efi". What the boot manager
+ calls windows won't boot, but efi will. It boots to a grub prompt. I 
+know how to boot from there:<br>grub&gt; root=(hd0,2) &lt;&lt;set the directory to the second partition&gt;&gt;<br>grub&gt; linux /boot/vmlinuz root=/dev/sda2 nomodeset quiet nosplash noefi<br>grub&gt; initrd /boot/initrd.img<br>grub&gt; boot<br>Which takes me to a Linux Mint 20 desktop! Yay!<br><br>I
+ modified the default grub.cfg (sda2), adding nomodeset and noefi in the
+ appropriate place, then updated grub. It will not boot off the second 
+partition as desired, I have to go through the above steps to boot.<br><br>see next comment</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|26 22:02:59 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=2"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=2"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=2"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Someone on the Mint forum suggested 
+updating my firmware from 1,1 to 2,1. It took multiple attempts--not 
+sure how many. This implies to me that I was making mistakes, but I 
+don't know where. In the end, it worked. OSX formerly said I had 1,1 and
+ now I have 2,1.<br><br>The firmware update made booting from an iso usb stick finally work, with these additions to the grub entry :<br>nomodeset quiet nosplash noefi<br>The iso usb stick was made according to Stefan's directions on this page.<br><br>Before
+ installation, I had given my ssd a tiny first partition containing 
+/efi/boot/bootia32.efi, so the Mac would boot (just as in the iso usb 
+stick, but no grub.cfg).<br>I installed Mint 20 to my ssd, picked 
+"something else" so I could select my own partitioning, keeping the 
+first partition. I told it to put grub in sda2<br><br>continued next comment</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|26 22:01:19 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=3"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=3"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=3"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: b</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Steen, I typed "/dev/sda1", yours may be 
+different, like /dev/sda2 or something. Since my end isn't working yet, 
+this advice may not be useful!</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|19 19:43:15 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=4"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=4"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=4"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Steen, this is the sort of thing needed:<br><br>grub&gt; linux /boot/vmlinuz root=/dev/sda1<br>grub&gt; initrd /boot/initrd.img<br>grub&gt; boot<br><br>note
+ that /boot/vmlinuz is spelled correctly (z). If you don't have that, 
+but have vmlinuz-xyz-123-abc or whatever, you may have to type the whole
+ thing. Same applies to initrd.img, may have a longer name.<br><br>That said, the above isn't working for me (yet). <br>What
+ did get me able to boot from a live usb drive was Stefan's suggestion 
+of editing the grub menu item (like 'boot ubuntu' choice, type e) and 
+adding 'quiet splash'. The final bit was to append 'noefi'. Then I could
+ start Linux. Unfortunately, I still cannot install. It's running off 
+the flash drive, there is a 500G empty ssd in the Mac, and Linux Mint 
+says "you need 12.8G to install, you have 0", which I interpret as it 
+doesn't see the ssd.<br><br>Maybe this will inch you forward. Please advise if you get beyond this point!<br><br>Steve</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|19 19:40:28 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=5"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=5"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=5"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steen</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: United States</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Thank you so much for this! <br>Finally 
+making progress getting a late-2006 MacMini with a wiped HDD/broken DVD 
+to run Linux, and I'm able to boot into GRUB from a USB.<br>The problem 
+I'm having is that no matter what image of a distro I put on the 2nd 
+partition, it doesn't load in GRUB...it just stops at the GRUB command 
+line. I'm able to use 'ls' to look into the directories and find where 
+the image is, but I feel like I'm obviously missing a step here. Any 
+suggestions on how to get GRUB to find the Linux distro or how I can 
+manually start it from the GRUB command line?<br>Thanks!</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|09|14 18:02:12 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=6"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=6"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=6"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Thanks very much for these instructions.<br>I
+ have a Mac Pro tower 1,1 2006 (32b efi) where I am trying to install 
+Linux. Via Matt Gadient's instructions, used his Ubuntu 18.04 pre-made 
+iso. I have also tried the unmodified Mint Mate 20 iso. Both give the 
+same result.<br>Using the option key, I boot off the efi flash drive. 
+Grub starts and asks which choice I want to boot from, for example Linux
+ Mint Mate 20. i choose that and have a blank screen with a single 
+underscore (not blinking). After a few minutes this goes away, leaving a
+ blank screen.<br>I did try adding "quiet nomodeset nosplash", that did not change it. Please advise, Steve</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|08|23 00:31:17 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=7"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=7"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=7"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Steve Smith</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: Boston, Mass. USA</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">Thanks very much for these instructions.<br>I
+ have a Mac Pro tower 1,1 2006 (32b efi) where I am trying to install 
+Linux. Via Matt Gadient's instructions, used his Ubuntu 18.04 pre-made 
+iso. I have also tried the unmodified Mint Mate 20 iso. Both give the 
+same result.<br>Using the option key, I boot off the efi flash drive. 
+Grub starts and asks which choice I want to boot from, for example Linux
+ Mint Mate 20. i choose that and have a blank screen with a single 
+underscore (not blinking). After a few minutes this goes away, leaving a
+ blank screen.<br>I did try adding "quiet nomodeset nosplash", that did not change it. Please advise, Steve</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|08|23 00:03:01 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=8"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=8"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=8"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbook_commentbox">
+
+	<div class="gbook_left_box">
+	<span class="gbook_submitted_by"> <b>Bruce McLean</b></span><br class="clear">
+	<span class="gbook_submitted_by">From: US</span><br class="clear">	</div>
+
+	<div class="gbook_right_box">
+	<span class="gbook_comment">I gave up on Elementary OS due to lockups 
+on shutdown and frustrations installing apps.  I switched to Cinnamon 
+Mint 19.3 which seems snappier and more stable.  The remaining problem 
+is doing right clicks on a single button trackpad. Currently I work 
+around it by turning on accessibility option to simulate secondary click
+ by holding down the primary button.  Does anyone have a better 
+solution?</span><br class="clear">
+	<hr align="left">
+
+		<div class="gbook_right_box_1">
+			<span class="gbook_added"><i>
+				UTC 2020|08|20 10:09:52 (@)</i>
+			</span>
+		</div>
+
+		<div class="gbook_right_box_2" align="right">
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=delete&amp;num=9"><img src="gbook_data/delete.gif" alt="Delete this entry" class="gbook_nobrd" title="Delete this entry"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=reply&amp;num=9"><img src="gbook_data/reply.gif" alt="Reply as Admin" class="gbook_nobrd" title="Reply as Admin"></a>
+		<a href="https://mesom.de/efi32boot/gbook/gbook.php?a=viewIP&amp;num=9"><img src="gbook_data/ip.gif" alt="View IP address" class="gbook_nobrd" title="View IP address"></a>
+		</div>
+	</div>
+
+</div>
+<div class="clear"></div><div style="text-align:center; color: #cccccc">Powered by <a style="color: #cccccc" href="http://www.phpjunkyard.com/php-guestbook-script.php" target="_blank" title="Guestbook">PHP Guestbook</a> - brought to you by <a style="color: #cccccc" href="http://www.phpjunkyard.com/" target="_blank" title="Free PHP Scripts">PHP Scripts</a></div>
+<div class="clear">&nbsp;</div>
+
+<div class="gbook_bottom" align="center">
+ <b>1</b>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=2">2</a>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=3">3</a>  <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=2">Next ›</a> <a href="https://mesom.de/efi32boot/gbook/gbook.php?page=3">Last »</a></div>
+
+
+
+
+</body></html>

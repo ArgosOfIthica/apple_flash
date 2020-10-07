@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="Dateien über die serielle Schnittstelle zum Pi Zero schicken">
+<meta name="keywords" content="Live CD on USB stick for old models with 32 bit EFI">
+<title>Live CD on an USB Stick (32-bit EFI, 64-bit Linux)</title>
+<link rel="shortcut icon" href="https://mesom.de/mlogo.ico">
+<link rel="stylesheet" type="text/css" href="Live%20CD%20on%20an%20USB%20Stick%20(32-bit%20EFI,%2064-bit%20Linux)_files/formate.css">
+</head>
+<body>
+<iframe id="imenu" src="Live%20CD%20on%20an%20USB%20Stick%20(32-bit%20EFI,%2064-bit%20Linux)_files/menu.html" scrolling="no" marginwidth="0" frameborder="0"></iframe>
+<table id="haupt">
+<tbody><tr>
+<td id="menu"></td>
+<td id="zentrier">&nbsp;</td>
+<td id="fuell">&nbsp;</td>
+<td id="inhalt">
+<!--<div id="ueb1"><div id="ueb2"><div id="code"><span id="mark"> target="_blank"-->
+<!--##########################################  Inhalt  ########################################## -->
+
+<div id="ueb1">Live CD on an USB Stick (32-bit EFI, 64-bit Linux)</div>
+A friend of mine is using his old MacBook Pro from the year 2006 up to this date (December 2019).
+Unfortunately he gets an error message from his banking website, that his Firefox browser is to
+old and a security risk. It is actually the only website, that is complaining. I like the idea
+of protecting the environment by using everything quite long (last MacBook Pro of mine was 2010-2018,
+current is a used one from 2012).<br><br>
+One idea was to give him another more up to date browser for his
+MacOS X Lion, but nothing worked. Then I though about
+using an Live CD. But the newest, that I was able to boot and had lying around was Ubuntu
+12.04. I burned quite a lot
+DVDs but I did not recognize that his DVD drive stopped working along the way. Then
+after some reading on 
+<a href="http://www.rodsbooks.com/refind/" target="_blank">the reFind website</a> I figured
+out, that everything is related to the 32-bit EFI bootloader, that is needed. The Linux
+itself can then be a 64-bit version.<br><br>
+Then I stumbled across the website of
+<a href="https://mattgadient.com/linux-dvd-images-and-how-to-for-32-bit-efi-macs-late-2006-models/" target="_blank">
+Matt Gadient</a>. He offered
+some Linux images, that are 64-bit versions but a few bytes in the bootloader are changed,
+so that the old Macs grab the 32-bit EFI loader. To quote him on the Mac models:
+<div id="ueb2">Before reading further: Make sure you’re in the same boat!</div>
+These tend to be all of the Core2Duo models from late 2006. More specifically:
+<li>iMac 5,1 – iMac 5,2 – iMac 6,1
+</li><li>Macbook 2,1
+</li><li>MacBook Pro 2,1 – MacBook Pro 2,2
+</li><li>Mac Pro 1,1
+</li><li>Xserve 1,1 (maybe)<br><br>
+Matts page is quite long - especially caused by comments. To sum it up: The broken DVD drive
+seems to be quite common. Matt mostly suggests using an external CD drive or to remove the 
+harddisk, install a Linux with another PC on it and put it back. But then I found one
+really interesting comment, that mainly consisted of a link to a very cryptic PDF on how
+to <a href="https://sourceforge.net/projects/toysbox/files/MacBook_revival_Playground/Booting_any_ubuntu_on_MacBook-32bit_and_windows10-like_uefi_using_usb_stick.pdf" target="_blank">
+boot these Macs with a USB Live Linux Stick</a>.
+After a lot of hours I found a reproduceable way to make such a stick in just 10 minutes.
+I tested it with <code>
+lubuntu-18.04-desktop-amd64-mac-mattgadient.com.iso
+</code>
+which worked very good and with some Manjaro, which didn't work. So, here are the steps ...
+<br><br>
+- Grab a USB stick that is not to cheap, otherwise you might end with an error like this:
+<img src="Live%20CD%20on%20an%20USB%20Stick%20(32-bit%20EFI,%2064-bit%20Linux)_files/efi32boot1.jpg">
+- Start a Linux distro of your choice (e.g. Manjaro 18.1.3) on another PC<br>
+- Start a terminal and type
+<div id="code">
+lsblk
+</div>
+- Plug in your USB stick without any important data (All will be lost!) and type
+<div id="code">
+lsblk
+</div>
+again and compare it to the last output. The difference between the outputs are caused by
+the newly inserted stick. Mine is called <code><b>sdb</b></code>
+and so all the following commands are based on that expression. <br><br>
+It is <span id="mark">extremly (!) important</span>, that you alter all of my commands
+written here appropriately if you have another drive expression than
+<code><b>sdb</b></code> to not accidently overwrite your other sticks and harddrives
+currently installed!
+<br><br>
+
+- Start a Terminal and type:<br>
+<div id="code">
+sudo dd if=/dev/zero of=/dev/<b>sdb</b>
+</div>
+and quit this process after about 10 seconds by pressing Ctrl+C a few times. This process
+completely erases all partitions and the boot-record on the stick.<br><br>
+
+
+- Now we have to give the whole stick the "Master Boot Record" (<code>MBR/msdos</code>)
+format:
+<div id="code">
+sudo fdisk /dev/<b>sdb</b>      <br>
+o                               <br>
+w                               <br>
+</div> 
+
+- Next we are going to put a small EFI boot partition on the stick:
+<div id="code">
+sudo fdisk /dev/<b>sdb</b>        <br> 
+n                                 <br>
+p                                 <br>
+1                                 <br>
+2048                              <br>
++36M                              <br>
+w                                 <br>
+</div>
+
+
+Now think about for a short while: What will be the largest Linux Live ISO, that you
+will put on this stick. I will only use Lubuntu, which is about 1.1 GB, so (on
+my small 2 GB stick) 1700MB is enough for me. If you want more space and have a
+larger Stick you might want to replace the 1700 in the next section.
+<br><br>
+- We are going to change the first partition to a real EFI-boot partition and make another
+partition for the Lubuntu:
+<div id="code">
+sudo fdisk /dev/<b>sdb</b>           <br>
+t                                    <br>
+ef                                   <br>
+n                                    <br>
+p                                    <br>
+2                                    <br>
+75776                                <br>
++1700M                               <br>
+a                                    <br>
+1                                    <br>
+w                                    <br>
+</div>
+
+- Start the Programm GParted <br>
+- Click GParted - Refresh devices <br>
+- Click GParted - Devices - /dev/<b>sdb</b> <br>
+- Right-click first partition - Format as - FAT32 <br>
+- Click on the "Apply all operations" checkmark <br>
+<br>
+- We have to mount the drive manually, because Linux does not mount the EFI partition
+type automatically:
+<div id="code">
+mkdir /tmp/sdb1                                <br>
+sudo mount -o rw /dev/<b>sdb</b>1 /tmp/sdb1    <br>
+</div>
+
+- The fastest way to create some nested folders:
+<div id="code">
+sudo mkdir -p /tmp/sdb1/boot/grub/        <br>
+sudo mkdir -p /tmp/sdb1/efi/boot/         <br>
+</div>
+
+- Now we tell the GRUB bootloader to search for the <code>loopback.cfg</code> which will start the
+real Linux kernel:
+<div id="code">
+sudo nano /tmp/sdb1/boot/grub/grub.cfg
+</div>
+- Copy the following lines into the nano-editor, that just opened:
+<div id="code">
+search --file --set=root /boot/grub/loopback.cfg   <br>
+configfile /boot/grub/loopback.cfg                 <br>
+</div>
+- Now quit it with Ctrl+X and write changes. <br>
+- Download <a href="https://github.com/jfwells/linux-asus-t100ta/blob/master/boot/bootia32.efi" target="_blank">
+https://github.com/jfwells/linux-asus-t100ta/blob/master/boot/bootia32.efi</a> <br>
+manually or <code>wget https://github.com/jfwells/linux-asus-t100ta/raw/master/boot/bootia32.efi</code><br>
+- Copy this file from your download folder and unmount the drive: 
+<div id="code">
+sudo cp /home/stefan/Downloads/bootia32.efi /tmp/sdb1/efi/boot/ <br>
+sync                                                            <br>
+sudo umount /tmp/sdb1                                           <br>
+</div>
+- Put the ISO image on the second partition of the stick: 
+<div id="code">
+sudo dd if=/path/to/lubuntu.iso of=/dev/<b>sdb</b>2 bs=1M
+</div>
+
+<div id="ueb2">Testing the Stick</div>
+- Put it into the USB of the old Mac<br>
+- Switch it on with the Power button and immediately afterwards, press and hold the
+Alt-Key until 2 drives appear on a grey screen<br>
+- Select the EFI and press Enter<br>
+- Now it takes a minute until a menu appears with "Try Ubuntu ..." - Press the
+key <span id="mark">&nbsp;e&nbsp;<br></span>
+- A very basic editor opens with 2 important words on the screen: <code>quiet splash</code><br>
+These are bootoptions. There are lots of them and using a search machine should reveal a
+site, that is as helpfull as my <a href="https://wiki.ubuntuusers.de/Bootoptionen/" target="_blank">
+german page</a>. Most of the times I used:
+<div id="code">
+quiet nomodeset nosplash
+</div>
+If you have plenty of ram (&gt;=3 GB) you could load the whole stick to RAM and eject the
+stick it after the Linux has started:
+<div id="code">
+quiet nomodeset toram nosplash
+</div>
+- Press fn+F10<br>
+- Wait for some minutes<br>
+
+<div id="ueb2">Some hints for Installing the Linux</div>
+I have never tried to actually install the Linux but at least
+3 people succeeded. To sum up important conclusions from the comments:<br>
+- Kim mentions, that it is very important to have a
+working LAN connection to install updates during install.
+A USB network adapter is useful here.
+
+<div id="ueb2">Some hints for my german fellows</div>           
+# Deutsche Tastatur                          <br>
+Rechtsklick Taskleiste                       <br>
+Add ... Panelitems                           <br>
+Add                                          <br>
+Keyboard layout handler                      <br>
+Add                                          <br>
+Close                                        <br>
+Rechtsclick Amerikanische Fahne              <br>
+Keyboard ... Settings                        <br>
+Häckchen weg "Keep system layouts"           <br>
+Add german                                   <br>
+<br>
+# Aktuellster Firefox                                     <br>
+Die nachfolgende Zeile über Edit - Copy kopieren          <br>
+sudo apt update &amp;&amp; sudo apt install firefox               <br>
+Start - System Tools - LX Terminal - Rechtsklick - Paste  <br>
+<br>
+# Werbeblocker                                     <br>
+Firefox - Hamburger - ublock in Suchfeld - Add ... <br>
+
+<!--##########################################  Inhalt Ende  ########################################## style="text-align: right-->
+<iframe id="gaestebuch" src="Live%20CD%20on%20an%20USB%20Stick%20(32-bit%20EFI,%2064-bit%20Linux)_files/gbook.html" scrolling="yes" marginwidth="0" frameborder="0"></iframe>
+</li></td>
+<td id="zentrier">&nbsp;</td>
+</tr>
+</tbody></table>
+
+</body></html>
